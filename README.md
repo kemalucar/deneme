@@ -1,4 +1,4 @@
-https://raw.githubusercontent.com/kemalucar/deneme/master/bab3dprof.jpg
+https://github.com/kemalucar/deneme/blob/master/bab3dprof.jpg
 
 Simple low poly Multiple Character clone with , Multiple Animations from 3dprof.com  
 
