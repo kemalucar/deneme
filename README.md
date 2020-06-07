@@ -1,6 +1,6 @@
 ![3dprof.com](https://github.com/kemalucar/deneme/blob/master/bab3dprof.jpg?raw=true "Simple low poly Multiple Character clone with , Multiple Animations  for Babylon.js")
 
-Simple low poly Multiple Character cloning with , Multiple Animations for Babylon.js
+Simple low poly Multiple Character cloning with , Multiple Animations code sample for Babylon.js
 
 Live : http://3dprof.com/test/
 
