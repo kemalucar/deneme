@@ -8,7 +8,7 @@ Live : http://3dprof.com/test/
 
 low poly Male and Female character with 4 clones , 4 different animations same time.
 
-( characters exported from 3dsmax to .baylon file )
+( characters exported from 3dsmax or blender etc. to .baylon file )
 
 -not need animation groups,
 -not need animation range,
