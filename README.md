@@ -14,7 +14,7 @@ low poly Male and Female character with 4 clones , 4 different animations same t
 -not need animation range,
 -just sequential animations by keyframe.
 
-Mesh files must be .baylon format, cause .glb file format and webgl2 cant clone skeletons yet :)
+Mesh files must be .baylon format, cause .glb file format and webgl2 cant clone skeletons yet ??? :)
 
 Thanks
 
