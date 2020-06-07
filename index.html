@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Babylon.js Simple low poly Multiple Character clone with , Multiple Animations from 3dprof.com</title>
+
+    <!-- Babylon.js -->
+
+    <script src="https://preview.babylonjs.com/babylon.js"></script>
+
+    <style>
+        html,
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="renderCanvas"></canvas>
+    <script>
+        var canvas = document.getElementById("renderCanvas");
+
+        var engine = null;
+        var scene = null;
+        var sceneToRender = null;
+        var createDefaultEngine = function() {
+            return new BABYLON.Engine(canvas, true, {
+                preserveDrawingBuffer: true,
+                stencil: true
+            });
+        };
+        var createScene = function(engine) {
+            var scene = new BABYLON.Scene(engine);
+            //var lighte = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(2, 0, 2), scene);
+            camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
+            scene.activeCamera = camera;
+            camera.attachControl(canvas, true);
+            camera.setPosition(new BABYLON.Vector3(-2, 2, -2));
+            camera.setTarget(new BABYLON.Vector3(0, 0.3, 1));
+            camera.lowerBetaLimit = 0;
+            camera.upperBetaLimit = (Math.PI / 2) * 0.9;
+            camera.lowerRadiusLimit = 5;
+            camera.upperRadiusLimit = 50;
+            camera.radius = 5;
+
+            camera.attachControl(canvas, true);
+
+            scene.animationsEnabled = true;
+
+            var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+            light.intensity = 2;
+            light.specular = BABYLON.Color3.Black();
+
+            var helper = scene.createDefaultEnvironment({
+                enableGroundShadow: false
+            });
+            helper.setMainColor(BABYLON.Color3.Gray());
+            helper.ground.position.y = -0.1;
+
+            BABYLON.SceneLoader.ImportMesh("", "./scenes/", "ErkekAnim.babylon", scene,
+
+                function(e_newMeshes, e_particleSystems, e_skeletons, ) {
+
+                    var erk_Org = scene.getMeshByName("Erkek");
+                    var erk_isk = scene.getSkeletonByName("Erkek_Iskelet");
+
+                    erk_Org.material.diffuseTexture = new BABYLON.Texture("./textures/k_giysi_renk.jpg", scene);
+
+                    var e_Otur = [0, 35];
+                    var e_Bekle = [36, 320];
+                    var e_Yuru = [321, 352];
+                    var e_Kos = [353, 378];
+
+                    erk_Org.position = new BABYLON.Vector3(-2, 0, 2);
+                    erk_Org.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
+                    erk_Org.visibility = 0.7;
+
+                    var erk_Klon_1 = erk_Org.clone("erk_Klon_1");
+                    erk_Klon_1.skeleton = erk_Org.skeleton.clone("erk_Klon_1_isk");
+                    erk_Klon_1.position = new BABYLON.Vector3(-1, 0, 2);
+                    erk_Klon_1.scaling = new BABYLON.Vector3(1, 1, 1);
+                    erk_Klon_1.visibility = 1;
+
+                    var erk_Klon_2 = erk_Org.clone("erk_Klon_2");
+                    erk_Klon_2.skeleton = erk_Org.skeleton.clone("erk_Klon_2_isk");
+                    erk_Klon_2.position = new BABYLON.Vector3(0, 0, 2);
+                    erk_Klon_2.scaling = new BABYLON.Vector3(1, 1, 1);
+                    erk_Klon_2.visibility = 1;
+
+                    var erk_Klon_3 = erk_Org.clone("erk_Klon_3");
+                    erk_Klon_3.skeleton = erk_Org.skeleton.clone("erk_Klon_3_isk");
+                    erk_Klon_3.position = new BABYLON.Vector3(1, 0, 2);
+                    erk_Klon_3.scaling = new BABYLON.Vector3(1, 1, 1);
+                    erk_Klon_3.visibility = 1;
+
+                    var erk_Klon_4 = erk_Org.clone("erk_Klon_4");
+                    erk_Klon_4.skeleton = erk_Org.skeleton.clone("erk_Klon_4_isk");
+                    erk_Klon_4.position = new BABYLON.Vector3(2, 0, 2);
+                    erk_Klon_4.scaling = new BABYLON.Vector3(1, 1, 1);
+                    erk_Klon_4.visibility = 1;
+
+                    scene.beginAnimation(erk_Klon_1.skeleton, e_Otur[0], e_Otur[1], true, 1);
+                    scene.beginAnimation(erk_Klon_2.skeleton, e_Bekle[0], e_Bekle[1], true, 1.5);
+                    scene.beginAnimation(erk_Klon_3.skeleton, e_Yuru[0], e_Yuru[1], true, 0.85);
+                    scene.beginAnimation(erk_Klon_4.skeleton, e_Kos[0], e_Kos[1], true, 1);
+
+                });
+
+            BABYLON.SceneLoader.ImportMesh("", "./scenes/", "KadinAnim.babylon", scene,
+
+                function(k_newMeshes, k_particleSystems, k_skeletons, ) {
+
+                    //var kad_Org = scene.getMeshByName("Kadin");
+                    //var kad_isk = scene.getSkeletonByName("Kadin_Iskelet");
+                    var kad_Org = k_newMeshes[0];
+                    var kad_isk = k_skeletons[0];
+
+                    kad_Org.material.diffuseTexture = new BABYLON.Texture("./textures/k_giysi_renk.jpg", scene);
+
+                    var k_Otur = [0, 287];
+                    var k_Bekle = [288, 468];
+                    var k_Yuru = [469, 505];
+                    var k_Kos = [506, 583];
+
+                    kad_Org.position = new BABYLON.Vector3(-2, 0, 0);
+                    kad_Org.scaling = new BABYLON.Vector3(0.5, 0.5, 0.5);
+                    kad_Org.visibility = 0.7;
+
+                    var kad_Klon_1 = kad_Org.clone("kad_Klon_1");
+                    kad_Klon_1.skeleton = kad_Org.skeleton.clone("Klon_1_isk");
+                    kad_Klon_1.position = new BABYLON.Vector3(-1, 0, 0);
+                    kad_Klon_1.scaling = new BABYLON.Vector3(1, 1, 1);
+                    kad_Klon_1.visibility = 1;
+
+                    var kad_Klon_2 = kad_Org.clone("kad_Klon_2");
+                    kad_Klon_2.skeleton = kad_Org.skeleton.clone("Klon_2_isk");
+                    kad_Klon_2.position = new BABYLON.Vector3(0, 0, 0);
+                    kad_Klon_2.scaling = new BABYLON.Vector3(1, 1, 1);
+                    kad_Klon_2.visibility = 1;
+
+                    var kad_Klon_3 = kad_Org.clone("kad_Klon_3");
+                    kad_Klon_3.skeleton = kad_Org.skeleton.clone("Klon_3_isk");
+                    kad_Klon_3.position = new BABYLON.Vector3(1, 0, 0);
+                    kad_Klon_3.scaling = new BABYLON.Vector3(1, 1, 1);
+                    kad_Klon_3.visibility = 1;
+
+                    var kad_Klon_4 = kad_Org.clone("kad_Klon_4");
+                    kad_Klon_4.skeleton = kad_Org.skeleton.clone("Klon_4_isk");
+                    kad_Klon_4.position = new BABYLON.Vector3(2, 0, 0);
+                    kad_Klon_4.scaling = new BABYLON.Vector3(1, 1, 1);
+                    kad_Klon_4.visibility = 1;
+
+                    scene.beginAnimation(kad_Klon_1.skeleton, k_Otur[0], k_Otur[1], true, 1);
+                    scene.beginAnimation(kad_Klon_2.skeleton, k_Bekle[0], k_Bekle[1], true, 3);
+                    scene.beginAnimation(kad_Klon_3.skeleton, k_Yuru[0], k_Yuru[1], true, 1);
+                    scene.beginAnimation(kad_Klon_4.skeleton, k_Kos[0], k_Kos[1], true, 1);
+
+                });
+
+            return scene;
+        };
+        var engine;
+        try {
+            engine = createDefaultEngine();
+        } catch (e) {
+            console.log("the available createEngine function failed. Creating the default engine instead");
+            engine = createDefaultEngine();
+        }
+        if (!engine) throw 'engine should not be null.';
+        scene = createScene();;
+        sceneToRender = scene
+
+        engine.runRenderLoop(function() {
+            if (sceneToRender) {
+                sceneToRender.render();
+            }
+        });
+
+        // Resize
+        window.addEventListener("resize", function() {
+            engine.resize();
+        });
+    </script>
+</body>
+
+</html>
